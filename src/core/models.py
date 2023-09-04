@@ -2,11 +2,14 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 
+from rest_framework.exceptions import ValidationError
+
 from autoslug import AutoSlugField
 from phonenumber_field.modelfields import PhoneNumberField
 from versatileimagefield.fields import VersatileImageField
 
 from config.models.baseModel import BaseModelWithUID
+from account.models import Organization, OrganizationUser
 
 from .choices import UserStatus, UserType, UserGender, BloodGroups
 from .managers import CustomUserManager
@@ -64,6 +67,22 @@ class User(AbstractBaseUser, BaseModelWithUID, PermissionsMixin):
     def get_name(self):
         name = " ".join([self.first_name, self.last_name])
         return name.strip()
+    
+    def get_organization_user(self) -> OrganizationUser:
+        try:
+            return self.organizationuser_set.select_related("organization", "user").get(
+                is_default=True
+            )
+        except OrganizationUser.DoesNotExist:
+            raise ValidationError({"detail": "You do not have any organization!"})
+
+    def get_organization(self) -> Organization:
+        try:
+            organizationuser = self.get_organization_user()
+        except Organization.DoesNotExist:
+            raise ValidationError({"detail": "Organization not found!"})
+
+        return organizationuser.organization
 
     def save(self, *args, **kwargs):
         if not self.pk:

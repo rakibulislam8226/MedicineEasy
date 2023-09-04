@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 from django.db.models import Q, UniqueConstraint
 
 from autoslug import AutoSlugField
@@ -9,9 +8,6 @@ from config.models.baseModel import BaseModelWithUID
 
 from .choices import *
 from .managers import *
-
-
-User = get_user_model()
 
 
 class Organization(BaseModelWithUID):
@@ -127,7 +123,7 @@ class Organization(BaseModelWithUID):
 
 class OrganizationUser(BaseModelWithUID):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey("core.User", on_delete=models.CASCADE)
     discount_offset = models.SmallIntegerField(
         default=0,
         help_text="We accept only percent here. For product, we will update the final price of a product regarding this percent.",
