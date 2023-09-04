@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+from datetime import timedelta
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,8 +43,12 @@ INSTALLED_APPS = [
     "pharmacy.apps.PharmacyConfig",
     "patient.apps.PatientConfig",
     "account.apps.AccountConfig",
+    "core.apps.CoreConfig",
     # THIRD PARTY APPS
     "rest_framework",
+    "rest_framework_simplejwt",
+    "phonenumber_field",
+    "simple_history",
 ]
 
 MIDDLEWARE = [
@@ -53,9 +59,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "simple_history.middleware.HistoryRequestMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
+AUTH_USER_MODEL = "core.User"
 
 TEMPLATES = [
     {
@@ -130,3 +138,18 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Customize setting
 APPEND_SLASH = False
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "UPDATE_LAST_LOGIN": True,
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 3,
+}
