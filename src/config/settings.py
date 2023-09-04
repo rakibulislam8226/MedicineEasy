@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "patient.apps.PatientConfig",
     "account.apps.AccountConfig",
     # THIRD PARTY APPS
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
