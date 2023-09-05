@@ -1,1 +1,1 @@
-### Drugstore Assistant is mainly to help users for any drugs with additional data. 
+### Drugstore Assistant is mainly to help users for any medicine's with additional data. 

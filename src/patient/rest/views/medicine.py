@@ -1,16 +1,15 @@
-from rest_framework import generics, filters
+from rest_framework import generics, filters, permissions
 
 from pharmacy.models import Medicine
 
-from ..serializers.medicine import MedicineListSerializer
-from ..permissions import IsOrganizationStaff
+from ..serializers.medicine import PublicMedicineListSerializer
 
 
-class MedicineListView(generics.ListCreateAPIView):
+class PublicMedicineListView(generics.ListAPIView):
     queryset = Medicine.objects.filter()
-    permission_classes = [IsOrganizationStaff]
+    permission_classes = [permissions.AllowAny]
     filter_backends = (filters.SearchFilter,)
-    serializer_class = MedicineListSerializer
+    serializer_class = PublicMedicineListSerializer
     search_fields = [
         "name",
         "brand__name",

@@ -1,3 +1,7 @@
 from django.urls import path
 
-urlpatterns = []
+from ..views.medicine import PublicMedicineListView
+
+urlpatterns = [
+    path("", PublicMedicineListView.as_view(), name="public-medicine"),
+]

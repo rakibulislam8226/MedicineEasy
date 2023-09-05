@@ -1,11 +1,11 @@
 from django.contrib import admin
 from .models import (
-    Drug,
+    Medicine,
     Generic,
     SideEffect,
     Brand,
     StorageInstructions,
-    DrugInteraction,
+    MedicineInteraction,
     GuidelinesForChildren,
     Pharmacology,
     DosageGuidelines,
@@ -13,9 +13,9 @@ from .models import (
 
 
 # Register your models here.
-@admin.register(Drug)
-class DrugAdmin(admin.ModelAdmin):
-    model = Drug
+@admin.register(Medicine)
+class MedicineAdmin(admin.ModelAdmin):
+    model = Medicine
     list_display = ["uid", "name", "brand"]
     readonly_fields = ["uid"]
 
@@ -30,7 +30,7 @@ class DosageGuidelinesAdmin(admin.ModelAdmin):
 @admin.register(GuidelinesForChildren)
 class GuidelinesForChildrenAdmin(admin.ModelAdmin):
     model = GuidelinesForChildren
-    list_display = ["uid", "age_group"]
+    list_display = ["uid", "age_group", "short_guideline"]
     readonly_fields = ["uid"]
 
 
@@ -41,9 +41,9 @@ class PharmacologyAdmin(admin.ModelAdmin):
     readonly_fields = ["uid"]
 
 
-@admin.register(DrugInteraction)
-class DrugInteractionAdmin(admin.ModelAdmin):
-    model = DrugInteraction
+@admin.register(MedicineInteraction)
+class MedicineInteractionAdmin(admin.ModelAdmin):
+    model = MedicineInteraction
     list_display = ["uid", "interaction_severity"]
     readonly_fields = ["uid"]
 

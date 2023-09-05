@@ -1,11 +1,11 @@
 {
   "name": "Rapid",
-  "brand": "af2adc5f-074f-48e5-a059-e4d4cc21e791",
+  "brand": "c79f2cde-a896-4c92-8d47-5610664453bc",
   "presentation": "TABLET",
   "batch_no": "3251",
   "manufacturer": "2023-08-10",
   "expiry_date": "2027-10-10",
-  "generic": "5077570f-7734-4543-b080-d6a8f36897b2",
+  "generic": "fe3ac704-b13d-429a-a253-950d714bbd9c",
   "pharmacology": {
     "mechanism_of_action": "Mechanism of action details"
   },
@@ -19,7 +19,7 @@
   "storage_instructions": {
     "place": "Fridge use."
   },
-  "drug_interaction": {
+  "medicine_interaction": {
     "interaction_severity": "Testing severity",
     "interaction_mechanism": "Testing machanasing"
   },

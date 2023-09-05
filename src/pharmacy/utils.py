@@ -2,7 +2,7 @@ import uuid
 
 
 # Slug Generators
-def get_drug_slug(instance):
+def get_medicine_slug(instance):
     return f"{instance.name}-{instance.brand}-{instance.batch_no}"
 
 
