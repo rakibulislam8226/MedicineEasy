@@ -39,7 +39,7 @@ urlpatterns = [
     # Projects apps urls.
     path("admin/", admin.site.urls),
     path("api/v1/pharmacy", include("pharmacy.rest.urls")),
-    path("api/v1/patient", include("patient.rest.urls")),
+    path("api/v1/patients", include("patient.rest.urls")),
 ]
 
 if settings.DEBUG:
