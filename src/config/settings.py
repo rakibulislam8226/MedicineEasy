@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "simple_history",
     "axes",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -157,6 +158,15 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
+# if os.environ.get("ENABLE_CORS_HEADERS", False) == "True":
+#     INSTALLED_APPS = [
+#         "corsheaders",
+#     ] + INSTALLED_APPS
+#     MIDDLEWARE = [
+#         "corsheaders.middleware.CorsMiddleware",
+#     ] + MIDDLEWARE
+
+
 AXES_FAILURE_LIMIT = 5
 
 SIMPLE_JWT = {
@@ -181,4 +191,12 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.UserRateThrottle",  # For authenticated users.
     ],
     "DEFAULT_THROTTLE_RATES": {"anon": "100/day", "user": "1000/day"},
+    # drf spectacular
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "AssistPharmacy API docs",
+    "DESCRIPTION": "AssistPharmacy is an app for pharmassist and users.",
+    "VERSION": "1.0.0",
 }
