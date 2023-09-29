@@ -158,6 +158,14 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
+if os.environ.get("ENABLE_DEBUG_TOOLBAR", False) == "True":
+    INSTALLED_APPS = [
+        "debug_toolbar",
+    ] + INSTALLED_APPS
+    MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ] + MIDDLEWARE
+
 # if os.environ.get("ENABLE_CORS_HEADERS", False) == "True":
 #     INSTALLED_APPS = [
 #         "corsheaders",
@@ -165,6 +173,10 @@ AUTHENTICATION_BACKENDS = [
 #     MIDDLEWARE = [
 #         "corsheaders.middleware.CorsMiddleware",
 #     ] + MIDDLEWARE
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 
 AXES_FAILURE_LIMIT = 5
