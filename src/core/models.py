@@ -17,6 +17,8 @@ from .utils import get_user_slug, get_user_media_path_prefix
 
 
 class User(AbstractBaseUser, BaseModelWithUID, PermissionsMixin):
+    first_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100, null=True, blank=True)
     username = models.CharField(max_length=255, unique=True)
     email = models.EmailField(blank=True)
     phone = PhoneNumberField(unique=True, db_index=True, verbose_name="Phone Number")
