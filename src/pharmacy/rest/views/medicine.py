@@ -23,3 +23,17 @@ class MedicineListView(generics.ListCreateAPIView):
         "guidelines_for_children__guideline",
         "pharmacology__mechanism_of_action",
     ]
+
+
+class MedicineDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = MedicineListSerializer
+    permission_classes = [IsOrganizationStaff]
+
+    def get_object(self):
+        medicine_uid = self.kwargs.get("medicine_uid", None)
+        kwargs = {
+            "uid": medicine_uid,
+        }
+        medicine = generics.get_object_or_404(Medicine.objects.filter(), **kwargs)
+
+        return medicine
