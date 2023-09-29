@@ -158,6 +158,15 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
+
+if os.environ.get("ENABLE_CORS_HEADERS", False) == "True":
+    INSTALLED_APPS = [
+        "corsheaders",
+    ] + INSTALLED_APPS
+    MIDDLEWARE = [
+        "corsheaders.middleware.CorsMiddleware",
+    ] + MIDDLEWARE
+
 if os.environ.get("ENABLE_DEBUG_TOOLBAR", False) == "True":
     INSTALLED_APPS = [
         "debug_toolbar",
@@ -166,16 +175,14 @@ if os.environ.get("ENABLE_DEBUG_TOOLBAR", False) == "True":
         "debug_toolbar.middleware.DebugToolbarMiddleware",
     ] + MIDDLEWARE
 
-# if os.environ.get("ENABLE_CORS_HEADERS", False) == "True":
-#     INSTALLED_APPS = [
-#         "corsheaders",
-#     ] + INSTALLED_APPS
-#     MIDDLEWARE = [
-#         "corsheaders.middleware.CorsMiddleware",
-#     ] + MIDDLEWARE
 
 INTERNAL_IPS = [
     "127.0.0.1",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 
