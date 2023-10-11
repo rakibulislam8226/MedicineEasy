@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "patient.apps.PatientConfig",
     "account.apps.AccountConfig",
     "core.apps.CoreConfig",
+    "organization.apps.OrganizationConfig",
     # THIRD PARTY APPS
     "rest_framework",
     "rest_framework_simplejwt",
