@@ -44,7 +44,7 @@ urlpatterns = [
     # patients
     path("api/v1/patients", include("patient.rest.urls")),
     # organization
-    path("api/v1/organization", include("organization.rest.urls")),
+    path("api/v1/organizations", include("organization.rest.urls")),
 ]
 
 if settings.DEBUG:
